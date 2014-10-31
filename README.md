@@ -34,7 +34,7 @@ Rack uses stack-based ordering of middleware, meaning the load order of middlewa
 A means to address this would be to implement dependancy decleraations, much like you would in a Gemfile. In addition, arbitrary conditions could also be defined (e.g. don't load me unless condition x is true) which can intelligently fall through and fail if it cannot be satisfied by other loaded middleware. A loading queue can be used to keep middleware who's conditions cannot be satisfied which can be rechecked whenever there's a chance the condition could now be satisfied, such as if new middleware is loaded. See https://github.com/Wardrop/RequirePattern for a simplified version of such an algorithm.
 
 ### Input and Output
-An IO object should be provided for both input and output, with full streaming capablities. This could even leverage the STDIN/STDOUT infrastructure built into Ruby, which would provide the easiest means of interoperation with other server and middleware vendors.
+An IO object should be provided for both input and output, with full streaming capabilities. This could even leverage the STDIN/STDOUT infrastructure built into Ruby, which would provide the easiest means of interoperation with other server and middleware vendors.
 
 Applications that wish not to stream can wait for EOF, where as other applications may wish to continually poll the input stream, or push to the output stream as quickly as possible. This model should be protocol agnostic. The same input/output model should work for both HTTP and WebSockets. These input and output objects could be wrapped by a higher-level context object, serving the same role as the `env` hash in Rack.
 
